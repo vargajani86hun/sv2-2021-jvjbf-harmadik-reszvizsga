@@ -8,7 +8,7 @@ import java.time.LocalTime;
 import java.util.*;
 
 public class MovieTheatreService {
-    private Map<String, List<Movie>> shows = new HashMap<>();
+    private Map<String, List<Movie>> shows = new LinkedHashMap<>();
 
     public Map<String, List<Movie>> getShows() {
         return Collections.unmodifiableMap(shows);
