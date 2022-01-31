@@ -24,7 +24,7 @@ public class MovieTheatreService {
                     addTheatre(values[0]);
                 }
 
-                shows.get(values[0]).add(new Movie(values[1], LocalTime.parse(values[2])));
+                addShow(values[0], values[1], LocalTime.parse(values[2]));
                 shows.get(values[0]).sort(Comparator.comparing(Movie::getStartTime));
             }
         } catch (IOException ioe) {
@@ -61,5 +61,9 @@ public class MovieTheatreService {
 
     private void addTheatre(String name) {
         shows.put(name, new LinkedList<>());
+    }
+
+    private void addShow(String theatre, String title, LocalTime startTime) {
+        shows.get(theatre).add(new Movie(title, startTime));
     }
 }
