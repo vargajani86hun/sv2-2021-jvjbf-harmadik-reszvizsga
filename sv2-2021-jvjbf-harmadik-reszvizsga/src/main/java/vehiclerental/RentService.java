@@ -11,7 +11,7 @@ public class RentService {
     private Map<Rentable, User> rents = new TreeMap<>();
 
     public void registerUser(User user) {
-        if (users.stream().anyMatch(u -> u.getUserName().equals(user.getUserName()))) {
+        if (isUserNameTaken(user)) {
             throw new UserNameIsAlreadyTakenException("Username is taken!");
         }
         users.add(user);
@@ -44,6 +44,11 @@ public class RentService {
         rents.get(rentable).minusBalance(rentable.calculateSumPrice(minutes));
         rents.remove(rentable);
         rentable.closeRent();
+    }
+
+    private boolean isUserNameTaken(User user) {
+        return users.stream()
+                .anyMatch(u -> u.getUserName().equals(user.getUserName()));
     }
 
     private boolean isRented(Rentable rentable) {
