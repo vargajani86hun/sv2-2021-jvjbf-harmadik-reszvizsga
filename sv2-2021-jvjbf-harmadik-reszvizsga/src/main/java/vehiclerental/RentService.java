@@ -8,7 +8,7 @@ public class RentService {
 
     private Set<User> users = new HashSet<>();
     private Set<Rentable> rentables = new HashSet<>();
-    private Map<Rentable, User> rents = new HashMap<>();
+    private Map<Rentable, User> rents = new TreeMap<>();
 
     public void registerUser(User user) {
         if (users.stream().anyMatch(u -> u.getUserName().equals(user.getUserName()))) {
