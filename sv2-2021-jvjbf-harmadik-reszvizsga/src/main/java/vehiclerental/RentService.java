@@ -41,6 +41,9 @@ public class RentService {
     }
 
     public void closeRent(Rentable rentable, long minutes) {
+        if(!rents.containsKey(rentable)) {
+            throw new IllegalStateException("Rentable is not taken!");
+        }
         rents.get(rentable).minusBalance(rentable.calculateSumPrice(minutes));
         rents.remove(rentable);
         rentable.closeRent();
