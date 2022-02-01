@@ -53,14 +53,14 @@ public class RentService {
 
     private boolean isRented(Rentable rentable) {
         if (rentable.getRentingTime() != null) {
-            throw new IllegalStateException();
+            throw new IllegalStateException("Already rented!");
         }
         return false;
     }
 
     private void chekUsersBalance(User user, Rentable rentable) {
         if (user.getBalance() < rentable.calculateSumPrice(MAX_RENTING_TIME_IN_MINUTES)) {
-            throw new IllegalStateException();
+            throw new IllegalStateException("Balance is too low!");
         }
     }
 }
